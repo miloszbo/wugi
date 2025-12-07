@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp6lk18ifh2h4"]
+
+[ext_resource type="Script" uid="uid://c4672wuj5je3w" path="res://Marcin/Main.cs" id="1_urkub"]
+[ext_resource type="Texture2D" uid="uid://c8yefl8pyygcd" path="res://icon.svg" id="2_0171r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1t3em"]
+radius = 71.11259
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_urkub")
+
+[node name="ContextMenu" type="PopupMenu" parent="."]
+oversampling_override = 1.0
+visible = true
+
+[node name="TargetArea" type="Area2D" parent="."]
+position = Vector2(486, 215)
+
+[node name="Sprite2D" type="Sprite2D" parent="TargetArea"]
+texture = ExtResource("2_0171r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_1t3em")
+debug_color = Color(0.81955034, 0.29340324, 0.7034943, 0.41960785)
