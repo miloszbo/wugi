@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bivcrx6w022ty"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_mf4mk"]
+script/source = "using Godot;
+using System;
+
+public partial class Test : Node2D
+{
+}
+"
+
+[node name="Test" type="Node2D"]
+script = SubResource("CSharpScript_mf4mk")

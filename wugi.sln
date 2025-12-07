@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wugi", "wugi.csproj", "{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{35CD11E0-D131-4CAC-B159-4C7A2D9F5F61}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
