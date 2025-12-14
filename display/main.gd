@@ -7,21 +7,34 @@ var is_chilling: bool = false
 var is_dragging: bool = false
 var drag_offset: Vector2i = Vector2i.ZERO
 var sprite_size
+var is_suprised: bool = false
 
 @onready var _MainWindow: Window = get_window()
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _input(event):
 	var window: Window = get_window()
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
+				animated_sprite_2d.frame_changed.disconnect(_update_mouse_mask)
 				var mouse_pos = get_global_mouse_position()
 				var sprite_rect = Rect2(Vector2.ZERO, sprite_size)
 				is_dragging = true
 				drag_offset = mouse_pos
+				animated_sprite_2d.play("grab")
 			else:
 				is_dragging = false
-		
+				animated_sprite_2d.play("place")
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.pressed:
+				if is_suprised == false:
+					is_suprised = true
+					animated_sprite_2d.play("suprise")
+				else:
+					is_suprised = false
+					animated_sprite_2d.play("idle")
+					
 	if is_dragging:
 		var new_position = DisplayServer.mouse_get_position() - drag_offset
 		var usable_rect = DisplayServer.screen_get_usable_rect()
@@ -37,13 +50,15 @@ func _ready():
 	_MainWindow.transparent = true
 	_MainWindow.transparent_bg = true
 	
+	animated_sprite_2d.play("idle")
+	
 	_update_mouse_mask()
 	
-	$AnimatedSprite2D.frame_changed.connect(_update_mouse_mask)
-	sprite_size = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame).get_size()
+	animated_sprite_2d.frame_changed.connect(_update_mouse_mask)
+	sprite_size = animated_sprite_2d.sprite_frames.get_frame_texture(animated_sprite_2d.animation, animated_sprite_2d.frame).get_size()
 		
 func _update_mouse_mask():
-	var anim = $AnimatedSprite2D
+	var anim = animated_sprite_2d
 	
 	var texture = anim.sprite_frames.get_frame_texture(anim.animation,anim.frame)
 	var image = texture.get_image()
@@ -57,3 +72,12 @@ func _update_mouse_mask():
 	var polygons = bitmap.opaque_to_polygons(Rect2(Vector2.ZERO, texture.get_size()), 0.1)
 	
 	DisplayServer.window_set_mouse_passthrough(polygons)
+	
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "place":
+		animated_sprite_2d.frame_changed.connect(_update_mouse_mask)
+		animated_sprite_2d.play("idle")
+	if animated_sprite_2d.animation == "grab":
+		animated_sprite_2d.play("hang")

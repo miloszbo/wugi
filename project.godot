@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="wugi"
+run/main_scene="uid://vgi201ew802q"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=200
-window/size/viewport_height=200
+window/size/viewport_width=400
+window/size/viewport_height=400
 window/size/transparent=true
 window/size/no_focus=true
 window/subwindows/embed_subwindows=false
