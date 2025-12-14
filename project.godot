@@ -11,8 +11,11 @@ config_version=5
 [application]
 
 config/name="wugi"
-run/main_scene="uid://vgi201ew802q"
-config/features=PackedStringArray("4.5", "Forward Plus")
+
+run/main_scene="uid://d15ehaour68v"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+
+
 config/icon="res://icon.svg"
 
 [display]
@@ -30,6 +33,7 @@ project/assembly_name="wugi"
 
 [rendering]
 
+gl_compatibility/fallback_to_native=false
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 viewport/transparent_background=true
