@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bipu0lo7ixfaf"]
+
+[ext_resource type="Script" uid="uid://cp0cuw0y6fh3b" path="res://Test/TestConsole.cs" id="1_mqkc5"]
+
+[node name="TestConsole" type="Control" node_paths=PackedStringArray("Output")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mqkc5")
+Output = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 1030.0
+offset_bottom = 638.0
