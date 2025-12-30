@@ -9,5 +9,8 @@
     <Reference Include="WinMonitor">
         <HintPath>Native/WinMonitor.dll</HintPath>
     </Reference>
+    <Reference Include="ConsoleHost">
+        <HintPath>Native/ConsoleHost.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

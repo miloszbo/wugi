@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bipu0lo7ixfaf"]
+
+[ext_resource type="Script" uid="uid://cp0cuw0y6fh3b" path="res://Test/MonitorConsole.cs" id="1_1nrb7"]
+
+[node name="MonitorConsole" type="Control" node_paths=PackedStringArray("Output")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1nrb7")
+Output = NodePath("RichTextLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -40.0
+offset_right = 500.0
+offset_bottom = 448.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 1030.0
+offset_bottom = 638.0

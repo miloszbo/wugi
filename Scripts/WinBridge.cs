@@ -1,6 +1,7 @@
 using Godot;
-using WinMonitor; // This is the namespace of your DLL
 using System.Runtime.Versioning;
+using WinMonitor; // This is the namespace of your DLL
+using ConsoleHost;
 
 [SupportedOSPlatform("windows")]
 public static class WinBridge
@@ -261,5 +262,66 @@ public static class WinBridge
 	{
 		LogInit();
 		return WinAPI.GetActiveProcessInfo();
+	}
+}
+
+
+
+
+
+
+
+
+[SupportedOSPlatform("windows")]
+public static class WinConsoleBridge
+{
+	private static bool _logged;
+
+	private static void LogInit()
+	{
+		if (_logged) return;
+		_logged = true;
+
+		string path = ProjectSettings.GlobalizePath("res://Native/ConsoleHost.dll");
+		GD.Print("[WinConsoleBridge] Loaded ConsoleHost.dll at: ", path);
+	}
+
+	/* ============================================================
+	   CONSOLE LIFECYCLE
+	   ============================================================ */
+
+	public static void Create(int cols, int rows)
+	{
+		LogInit();
+		WinConsoleAPI.CreateConsole(cols, rows);
+	}
+
+	public static void StartShell(string shell)
+	{
+		WinConsoleAPI.StartShell(shell);
+	}
+
+	public static void Resize(int cols, int rows)
+	{
+		WinConsoleAPI.Resize(cols, rows);
+	}
+
+	public static void Close()
+	{
+		WinConsoleAPI.Close();
+	}
+
+	/* ============================================================
+	   I/O
+	   ============================================================ */
+
+	public static void Write(string text)
+	{
+		WinConsoleAPI.WriteInput(text);
+	}
+
+	public static string Read()
+	{
+		return WinConsoleAPI.ReadOutput();
 	}
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Versioning;
 
 [SupportedOSPlatform("windows")]
-public partial class TestConsole : Control
+public partial class MonitorConsole : Control
 {
 	[Export] private RichTextLabel Output;
 
