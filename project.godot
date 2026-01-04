@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="wugi"
-
-run/main_scene="uid://d15ehaour68v"
+run/main_scene="uid://buo8kepq02r47"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
-
-
 config/icon="res://icon.svg"
+
+[autoload]
+
+SystemMonitor="*res://Scripts/SystemMonitor.cs"
 
 [display]
 
@@ -26,10 +27,6 @@ window/size/transparent=true
 window/size/no_focus=true
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
-
-[autoload]
-
-SystemMonitor="*res://Scripts/SystemMonitor.cs"
 
 [dotnet]
 

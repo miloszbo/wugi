@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcg5qwbyrio7y"]
+
+[ext_resource type="Script" uid="uid://b3luxc6ohhihd" path="res://Menu/Chat/UserBubble/user_bubble.gd" id="1_hm5jw"]
+
+[node name="UserBubble" type="HBoxContainer"]
+size_flags_horizontal = 3
+alignment = 2
+script = ExtResource("1_hm5jw")
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Spacer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Spacer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Text" type="RichTextLabel" parent="Spacer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2

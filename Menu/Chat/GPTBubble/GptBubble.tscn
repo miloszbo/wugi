@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk62yqnw4mduy"]
+
+[ext_resource type="Script" uid="uid://cnqkwd75k0t4l" path="res://Menu/Chat/GPTBubble/gpt_bubble.gd" id="1_3p2ff"]
+
+[node name="GPTBubble" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_3p2ff")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Text" type="RichTextLabel" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

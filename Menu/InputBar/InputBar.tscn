@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7pxtgfqa2r0s"]
+
+[ext_resource type="Theme" uid="uid://b7ihuvdot1738" path="res://Menu/InputBar/inputbar.tres" id="1_rpl0v"]
+
+[node name="InputBar" type="PanelContainer"]
+custom_minimum_size = Vector2(72, 256)
+offset_right = 72.0
+offset_bottom = 256.0
+theme = ExtResource("1_rpl0v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Buttvb" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ChatButt" type="Button" parent="MarginContainer/VBoxContainer/Buttvb"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_rpl0v")
+text = "GPT"
