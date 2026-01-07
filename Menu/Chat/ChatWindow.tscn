@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8rm15y81cony"]
+
+[ext_resource type="PackedScene" uid="uid://buo8kepq02r47" path="res://Menu/Chat/Chat.tscn" id="1_kocuy"]
+[ext_resource type="Script" uid="uid://7frccn61k5uq" path="res://Menu/Chat/chat_window.gd" id="1_se4eg"]
+
+[node name="ChatWindow" type="Window"]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(400, 400)
+script = ExtResource("1_se4eg")
+
+[node name="Chat" parent="." instance=ExtResource("1_kocuy")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ftkesddwqwxu"]
+
+[node name="SwitchButt" type="CheckButton"]
+custom_minimum_size = Vector2(72, 32)
+offset_left = 330.0
+offset_top = 4.0
+offset_right = 402.0
+offset_bottom = 36.0
+size_flags_vertical = 0

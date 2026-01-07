@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://buo8kepq02r47"]
+[gd_scene load_steps=5 format=3 uid="uid://buo8kepq02r47"]
 
 [ext_resource type="Script" uid="uid://clf6adc8n6bkk" path="res://Menu/Chat/chat.gd" id="1_uul2x"]
 [ext_resource type="PackedScene" uid="uid://dcg5qwbyrio7y" path="res://Menu/Chat/UserBubble/UserBubble.tscn" id="2_aok5u"]
 [ext_resource type="PackedScene" uid="uid://dk62yqnw4mduy" path="res://Menu/Chat/GPTBubble/GptBubble.tscn" id="3_i7kc7"]
+[ext_resource type="PackedScene" uid="uid://ftkesddwqwxu" path="res://Menu/Chat/CommandSwitch/switch_butt.tscn" id="4_i7kc7"]
 
 [node name="Chat" type="Control"]
 layout_mode = 3
@@ -23,6 +24,16 @@ layout_mode = 0
 offset_right = 400.0
 offset_bottom = 400.0
 
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SwitchButt" parent="VBoxContainer/PanelContainer" instance=ExtResource("4_i7kc7")]
+custom_minimum_size = Vector2(50, 32)
+layout_mode = 2
+size_flags_horizontal = 12
+size_flags_vertical = 4
+
 [node name="MessagePnael" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -31,11 +42,14 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MessagePnael/MarginContainer"]
-custom_minimum_size = Vector2(0, 320)
+custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 
 [node name="MessageVBox" type="VBoxContainer" parent="VBoxContainer/MessagePnael/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
 
 [node name="InputPanel" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -60,3 +74,5 @@ placeholder_text = "Tutaj piszesz komende"
 [node name="Button" type="Button" parent="VBoxContainer/InputPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+
+[connection signal="toggled" from="VBoxContainer/PanelContainer/SwitchButt" to="." method="_on_switch_butt_toggled"]

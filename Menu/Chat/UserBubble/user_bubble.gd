@@ -1,20 +1,24 @@
 extends HBoxContainer
 
-@onready var text_node: Node = $Spacer/PanelContainer/MarginContainer/Text
+@onready var text_node: Control = $PanelContainer/MarginContainer/Text
+
+
+func _ready() -> void:
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func set_text(t: String) -> void:
 	if text_node == null:
-		push_warning("UserBubble: Nie znaleziono noda Bubble/Margin/Text")
 		return
 
 	if text_node is RichTextLabel:
-		(text_node as RichTextLabel).text = t
+		var rtl := text_node as RichTextLabel
+		rtl.text = t
+		rtl.fit_content = true
+		rtl.scroll_active = false
 	elif text_node is Label:
-		(text_node as Label).text = t
-	else:
-		if text_node.has_method("set_text"):
-			text_node.call("set_text", t)
-		elif "text" in text_node:
-			text_node.set("text", t)
-		else:
-			push_warning("UserBubble: Text node nie obsługuje tekstu: %s" % text_node.get_class())
+		var lbl := text_node as Label
+		lbl.text = t
+		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
+
+	await get_tree().process_frame
+	queue_sort() # ✅ TO ZAMIAST minimum_size_changed()
