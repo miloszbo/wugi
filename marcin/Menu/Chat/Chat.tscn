@@ -18,6 +18,7 @@ messages_vbox_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/Scroll
 scroll_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/ScrollContainer")
 input_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/TextEdit")
 send_btn_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/Button")
+switch_butt_path = NodePath("VBoxContainer/PanelContainer/SwitchButt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -74,5 +75,24 @@ placeholder_text = "Tutaj piszesz komende"
 [node name="Button" type="Button" parent="VBoxContainer/InputPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+
+[node name="CommandsPopup" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 404.0
+offset_right = 400.0
+offset_bottom = 483.0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CommandsPopup"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CommandsPopup/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CommandVBox" type="VBoxContainer" parent="CommandsPopup/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 
 [connection signal="toggled" from="VBoxContainer/PanelContainer/SwitchButt" to="." method="_on_switch_butt_toggled"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dk62yqnw4mduy"]
 
-[ext_resource type="Script" uid="uid://cnqkwd75k0t4l" path="res://Menu/Chat/GPTBubble/gpt_bubble.gd" id="1_3p2ff"]
+[ext_resource type="Script" uid="uid://cnqkwd75k0t4l" path="res://marcin/Menu/Chat/GPTBubble/gpt_bubble.gd" id="1_3p2ff"]
 
 [node name="GPTBubble" type="HBoxContainer"]
 offset_right = 400.0
