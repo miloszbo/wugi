@@ -19,9 +19,6 @@ scroll_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/ScrollContain
 input_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/TextEdit")
 send_btn_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/Button")
 switch_butt_path = NodePath("VBoxContainer/PanelContainer/SwitchButt")
-commands_popup_path = NodePath("CommandsPopup")
-commands_scroll_path = NodePath("CommandsPopup/MarginContainer/ScrollContainer")
-commands_list_path = NodePath("CommandsPopup/MarginContainer/ScrollContainer/CommandVBox")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
