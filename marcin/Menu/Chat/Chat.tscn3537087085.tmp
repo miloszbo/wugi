@@ -18,7 +18,7 @@ mouse_filter = 1
 script = ExtResource("1_uul2x")
 user_bubble_scene = ExtResource("2_aok5u")
 gpt_bubble_scene = ExtResource("3_i7kc7")
-messages_vbox_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/ScrollContainer/MarginContainer/MessageVBox")
+messages_vbox_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/ScrollContainer/MessageVBox")
 scroll_path = NodePath("VBoxContainer/MessagePnael/MarginContainer/ScrollContainer")
 input_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/TextEdit")
 send_btn_path = NodePath("VBoxContainer/InputPanel/MarginContainer/HBoxContainer/Button")
@@ -62,11 +62,7 @@ theme_override_constants/margin_bottom = 18
 custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MessagePnael/MarginContainer/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/margin_right = 12
-
-[node name="MessageVBox" type="VBoxContainer" parent="VBoxContainer/MessagePnael/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="MessageVBox" type="VBoxContainer" parent="VBoxContainer/MessagePnael/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

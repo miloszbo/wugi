@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="WinMonitor">
+        <HintPath>karol/Native/WinMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="ConsoleHost">
+        <HintPath>karol/Native/ConsoleHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

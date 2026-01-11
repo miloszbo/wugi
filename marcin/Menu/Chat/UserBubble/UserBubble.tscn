@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dcg5qwbyrio7y"]
 
-[ext_resource type="Script" uid="uid://b3luxc6ohhihd" path="res://Menu/Chat/UserBubble/user_bubble.gd" id="1_hm5jw"]
+[ext_resource type="Script" uid="uid://b3luxc6ohhihd" path="res://marcin/Menu/Chat/UserBubble/user_bubble.gd" id="1_hm5jw"]
 
 [node name="UserBubble" type="HBoxContainer"]
 offset_right = 400.0
@@ -33,3 +33,8 @@ text = "Lorem"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
+
+[node name="Spacer2" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2

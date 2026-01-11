@@ -8,6 +8,11 @@ offset_bottom = 56.0
 size_flags_horizontal = 3
 script = ExtResource("1_3p2ff")
 
+[node name="Spacer1" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2

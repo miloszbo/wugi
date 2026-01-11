@@ -25,7 +25,7 @@ AgentManager="*res://karol/Scripts/AgentManager.cs"
 [display]
 
 window/size/viewport_width=500
-window/size/viewport_height=400
+window/size/viewport_height=448
 window/size/transparent=true
 window/size/no_focus=true
 window/subwindows/embed_subwindows=false

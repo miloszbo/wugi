@@ -55,7 +55,7 @@ func set_command_input(t: String) -> void:
 	button.add_theme_stylebox_override("normal", normal_style)
 
 	var hover_style := normal_style.duplicate() as StyleBoxFlat
-	hover_style.bg_color = Color(0.18, 0.19, 0.23)
+	hover_style.bg_color = Color(0.6, 0.686, 0.8, 1.0)
 	button.add_theme_stylebox_override("hover", hover_style)
 
 	button.add_theme_color_override("font_color", Color(0.9, 0.9, 0.95))
