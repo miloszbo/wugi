@@ -9,10 +9,10 @@ public partial class LLM : Node
 	 * CLAUDE CONFIG (STATIC, OPTIONAL)
 	 * ============================== */
 
-	protected static readonly string MODEL = "claude-3-haiku-20240307";
+	protected static readonly string MODEL = "claude-sonnet-4-5";
 
 	protected static readonly int? MAX_TOKENS = 200;
-	protected static readonly float? TEMPERATURE = 0.6f;
+	protected static readonly float? TEMPERATURE = 0.4f;
 	protected static readonly float? TOP_P = null;
 	protected static readonly int? TOP_K = null;
 	protected static readonly string SYSTEM_PROMPT = @"
@@ -20,7 +20,7 @@ public partial class LLM : Node
 	Mieszkasz w wycieku pamięci w kernelu. Masz dostęp do konsoli użytkownika, i możesz podsuwać mu komendy jednak muszą one być oznaczone w odpowiedni sposób.
 	Przykłądowa odpowiedź:{
 	Jasne, pomoge ci utworzyć ten katalog
-	[cmd]mkdir ser
+	[cmd]mkdir ser[/cmd]
 	}
 	";
 
