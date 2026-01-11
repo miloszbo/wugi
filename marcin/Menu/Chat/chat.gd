@@ -92,21 +92,21 @@ func _add_user_bubble(text: String) -> void:
 
 
 func _on_chat_response(text: String) -> void:
-    var lines := text.split("\n", false)
+	var lines := text.split("\n", false)
 
-    for line in lines:
-        var clean := line.strip_edges()
-        if clean.is_empty():
-            continue
+	for line in lines:
+		var clean := line.strip_edges()
+		if clean.is_empty():
+			continue
 
-        if clean.begins_with("[cmd]"):
-            var cmd := clean.substr(5).strip_edges()
-            if cmd.ends_with("[/cmd]"):
-                cmd = cmd.substr(0, cmd.length() - 6).strip_edges()
-            if not cmd.is_empty():
-                add_command_input(cmd)
-        else:
-            _add_gpt_bubble(clean)
+		if clean.begins_with("[cmd]"):
+			var cmd := clean.substr(5).strip_edges()
+			if cmd.ends_with("[/cmd]"):
+				cmd = cmd.substr(0, cmd.length() - 6).strip_edges()
+			if not cmd.is_empty():
+				add_command_input(cmd)
+		else:
+			_add_gpt_bubble(clean)
 
 
 func _add_gpt_bubble(text: String) -> void:
