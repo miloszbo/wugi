@@ -10,6 +10,7 @@ size_flags_vertical = 0
 script = ExtResource("1_hm5jw")
 
 [node name="Spacer" type="Control" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -33,8 +34,3 @@ text = "Lorem"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
-
-[node name="Spacer2" type="Control" parent="."]
-visible = false
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2

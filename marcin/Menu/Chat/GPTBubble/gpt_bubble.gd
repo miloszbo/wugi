@@ -2,13 +2,20 @@ extends HBoxContainer
 
 signal command_clicked(command_text: String)
 
-@onready var text_node: Node = $PanelContainer/MarginContainer/Text
+@onready var panel: PanelContainer = $PanelContainer
 @onready var margin: MarginContainer = $PanelContainer/MarginContainer
+@onready var text_node: Node = $PanelContainer/MarginContainer/Text
+
+
+func _ready() -> void:
+	# bąbelek ma zajmować całą szerokość w VBoxie
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	alignment = BoxContainer.ALIGNMENT_BEGIN   # GPT po lewej
 
 
 func set_text(t: String) -> void:
 	if text_node == null:
-		push_warning("Nie znaleziono noda PanelContainer/MarginContainer/Text")
+		push_warning("GPTBubble: brak noda Text")
 		return
 
 	text_node.visible = true
@@ -34,16 +41,23 @@ func set_command_input(t: String) -> void:
 	if text_node:
 		text_node.visible = false
 
+	# wyczyść ewentualne stare dzieci w MarginContainer
+	for child in margin.get_children():
+		if child != text_node:
+			child.queue_free()
+
 	var button := Button.new()
 	button.text = t
 	button.focus_mode = Control.FOCUS_NONE
 
-	button.flat = true
-	button.custom_minimum_size = Vector2(140, 30)
+	button.flat = false
+	button.custom_minimum_size = Vector2(0, 30)             # wysokość
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL # <-- FULL WIDTH
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 
+	# styl normalny
 	var normal_style := StyleBoxFlat.new()
-	normal_style.bg_color = Color(0.13, 0.14, 0.18)
+	normal_style.bg_color = Color("4d515aff") # kolor komend
 	normal_style.corner_radius_top_left = 6
 	normal_style.corner_radius_top_right = 6
 	normal_style.corner_radius_bottom_left = 6
@@ -54,8 +68,9 @@ func set_command_input(t: String) -> void:
 	normal_style.content_margin_bottom = 4
 	button.add_theme_stylebox_override("normal", normal_style)
 
+	# hover – trochę jaśniejszy
 	var hover_style := normal_style.duplicate() as StyleBoxFlat
-	hover_style.bg_color = Color(0.6, 0.686, 0.8, 1.0)
+	hover_style.bg_color = Color("343741")
 	button.add_theme_stylebox_override("hover", hover_style)
 
 	button.add_theme_color_override("font_color", Color(0.9, 0.9, 0.95))
