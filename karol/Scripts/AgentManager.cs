@@ -31,13 +31,12 @@ public partial class AgentManager : Node
 
 		if (HasNode("/root/SystemConsole"))
 		{
-			GD.Print("[AgentManager] Connecting to SystemConsole");
 			var console = GetNode<SystemConsole>("/root/SystemConsole");
 			console.ConsoleOutputReceived += OnConsoleOutput;
 		}
 		else
 		{
-			GD.Print("[AgentManager] SystemConsole not found");
+			GD.Print("[AgentManager] WARNING: SystemConsole not found");
 		}
 	}
 
@@ -47,8 +46,6 @@ public partial class AgentManager : Node
 
 	public void SubmitChat(string text)
 	{
-		GD.Print("[AgentManager] SubmitChat: ", text);
-
 		RegisterUserMessage(text);
 		string context = BuildContext();
 		DispatchToLLM(context);
@@ -60,7 +57,6 @@ public partial class AgentManager : Node
 
 	private void OnConsoleOutput(string text)
 	{
-		GD.Print("[AgentManager] Console output received");
 		_consoleHistory.Add(text);
 	}
 
@@ -70,14 +66,11 @@ public partial class AgentManager : Node
 
 	private void RegisterUserMessage(string text)
 	{
-		GD.Print("[AgentManager] Registering user message");
 		_chatHistory.Add(text);
 	}
 
 	private string BuildContext()
 	{
-		GD.Print("[AgentManager] Building context");
-
 		List<string> parts = new();
 
 		if (_chatHistory.Count > 0)
@@ -94,22 +87,21 @@ public partial class AgentManager : Node
 			parts.Add("[/console]");
 		}
 
-		string context = string.Join("\n", parts);
-		GD.Print("[AgentManager] Context length: ", context.Length);
-
-		return context;
+		return string.Join("\n", parts);
 	}
 
 	private void DispatchToLLM(string context)
 	{
-		GD.Print("[AgentManager] Dispatching to LLM");
-
 		if (!HasNode("/root/LLM"))
 		{
-			GD.Print("[AgentManager] ERROR: LLM not available");
 			EmitSignal(SignalName.SystemMessage, "LLM not available");
 			return;
 		}
+
+		// ===== FULL PROMPT DUMP =====
+		GD.Print("\n========== LLM PROMPT ==========\n");
+		GD.Print(context);
+		GD.Print("\n======== END PROMPT ==========\n");
 
 		var llm = GetNode<LLM>("/root/LLM");
 		llm.Prompt(context, OnLLMResponse);
@@ -117,13 +109,16 @@ public partial class AgentManager : Node
 
 	private void OnLLMResponse(string text)
 	{
-		GD.Print("[AgentManager] LLM response received");
+		// ===== FULL RESPONSE DUMP =====
+		GD.Print("\n======== LLM RESPONSE ========\n");
+		GD.Print(text);
+		GD.Print("\n====== END RESPONSE ======\n");
+
 		RouteResponseToChat(text);
 	}
 
 	private void RouteResponseToChat(string text)
 	{
-		GD.Print("[AgentManager] Routing response to chat");
 		EmitSignal(SignalName.ChatResponse, text);
 	}
 }

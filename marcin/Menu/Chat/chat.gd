@@ -30,15 +30,16 @@ func _ready() -> void:
 
 	if switch_butt:
 		switch_butt.toggled.connect(_on_switch_butt_toggled)
-		
-#testowy przyciski
+
+	# test
 	if switch_butt:
 		switch_butt.button_pressed = true
-	add_command_input("test")
+
 
 	# listen for responses from AgentManager
 	if AgentManager:
 		AgentManager.ChatResponse.connect(_on_chat_response)
+
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -64,20 +65,14 @@ func _send_message() -> void:
 		return
 
 	_add_user_bubble(text)
-	_add_gpt_bubble("hello world")
 
 	input.text = ""
 	input.grab_focus()
 
-	# send to AgentManager
-	if AgentManager:
-		AgentManager.SubmitChat(text)
 
-
-func _on_chat_response(text: String) -> void:
-	_add_gpt_bubble(text)
-
-
+# ==============================
+# CHAT ELEMENT CREATORS
+# ==============================
 
 func _add_user_bubble(text: String) -> void:
 	if user_bubble_scene == null or messages_vbox == null:
@@ -89,7 +84,27 @@ func _add_user_bubble(text: String) -> void:
 	if bubble.has_method("set_text"):
 		bubble.call("set_text", text)
 
+	# >>> COLLECT CHAT LINE HERE <<<
+	if AgentManager:
+		AgentManager.SubmitChat("[user] " + text)
+
 	_scroll_to_bottom_deferred()
+
+
+func _on_chat_response(text: String) -> void:
+	var lines := text.split("\n", false)
+
+	for line in lines:
+		var clean := line.strip_edges()
+		if clean.is_empty():
+			continue
+
+		if clean.begins_with("[cmd]"):
+			var cmd := clean.substr(5).strip_edges()
+			if not cmd.is_empty():
+				add_command_input(cmd)
+		else:
+			_add_gpt_bubble(clean)
 
 
 func _add_gpt_bubble(text: String) -> void:
@@ -101,6 +116,10 @@ func _add_gpt_bubble(text: String) -> void:
 
 	if bubble.has_method("set_text"):
 		bubble.call("set_text", text)
+
+	# >>> COLLECT CHAT LINE HERE <<<
+	if AgentManager:
+		AgentManager.SubmitChat("[wugi] " + text)
 
 	_scroll_to_bottom_deferred()
 
@@ -123,12 +142,28 @@ func add_command_input(cmd: String) -> void:
 	if bubble.has_signal("command_clicked"):
 		bubble.connect("command_clicked", Callable(self, "_on_command_bubble_clicked"))
 
+	# >>> COLLECT CHAT LINE HERE <<<
+	if AgentManager:
+		AgentManager.SubmitChat("[cmd] " + cmd)
+
 	_scroll_to_bottom_deferred()
 
 
+# ==============================
+# COMMAND EXECUTION (NO LOGGING)
+# ==============================
+
 func _on_command_bubble_clicked(cmd: String) -> void:
-	print("Command clicked: ", cmd)
-#Tutaj podpinasz logikę do input bubli 
+	var console := get_node_or_null("/root/SystemConsole")
+	if console:
+		console.Send(cmd)
+	else:
+		push_warning("SystemConsole autoload not found")
+
+
+# ==============================
+# UI UTILS
+# ==============================
 
 func _scroll_to_bottom_deferred() -> void:
 	await get_tree().process_frame
