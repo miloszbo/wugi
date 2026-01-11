@@ -5,6 +5,8 @@
 
 [node name="Consolewindow" type="Window"]
 oversampling_override = 1.0
+size = Vector2i(502, 448)
 script = ExtResource("1_8y1af")
 
 [node name="WindowsConsoleTest" parent="." instance=ExtResource("1_d0pnj")]
+position = Vector2(2, -3)

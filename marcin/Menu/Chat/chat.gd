@@ -105,8 +105,8 @@ func _on_chat_response(text: String) -> void:
 				cmd = cmd.substr(0, cmd.length() - 6).strip_edges()
 			if not cmd.is_empty():
 				add_command_input(cmd)
-		else:
-			_add_gpt_bubble(clean)
+			else:
+				_add_gpt_bubble(clean)
 
 
 func _add_gpt_bubble(text: String) -> void:
